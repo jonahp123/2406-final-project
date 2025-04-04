@@ -1,0 +1,83 @@
+<div class="hero-section">
+  <div class="hero-content">
+    <h1>Welcome to Movie Recommendation Hub</h1>
+    <p>Discover, rate, and review your favorite movies</p>
+    <a href="/search" class="btn btn-hero">Find Movies</a>
+  </div>
+</div>
+
+<div class="intro-section">
+  <div class="intro-content">
+    <h2>Your Personal Movie Journey Starts Here</h2>
+    <p>Join our community of movie enthusiasts to discover new films, share your opinions, and keep track of your favorites. Whether you're a casual viewer or a dedicated cinephile, there's something for everyone.</p>
+  </div>
+  
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🎬</div>
+      <h3>Discover</h3>
+      <p>Find new movies based on your interests and preferences</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⭐</div>
+      <h3>Rate</h3>
+      <p>Share your opinions by rating movies you've watched</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✍️</div>
+      <h3>Review</h3>
+      <p>Write detailed reviews to help others discover great films</p>
+    </div>
+  </div>
+</div>
+
+{{#if topMovies.length}}
+  <h2>Top Rated Movies</h2>
+  <div class="movies-grid">
+    {{#each topMovies}}
+      <div class="movie-card">
+        <a href="/movie/{{id}}">
+          <img src="{{poster}}" alt="{{title}} poster">
+          <div class="movie-info">
+            <h3>{{title}}</h3>
+            <p>{{year}}</p>
+            <p>Rating: {{avgRating}}/5</p>
+          </div>
+        </a>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}
+
+{{#if reviews.length}}
+  <h2>Latest Reviews</h2>
+  <div class="reviews-section">
+    {{#each reviews}}
+      <div class="review-item">
+        <div class="review-header">
+          <div>
+            <a href="/movie/{{movieId}}">
+              <strong>{{title}}</strong>
+            </a>
+            by <span class="review-author">{{userid}}</span>
+          </div>
+          <span class="review-date">{{date}}</span>
+        </div>
+        <p class="review-text">{{review}}</p>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}
+
+<div class="cta-section">
+  <h2>Ready to start your movie journey?</h2>
+  <p>Join our community today to rate, review, and discover amazing films!</p>
+  {{#if user}}
+    <a href="/search" class="btn">Explore Movies</a>
+  {{else}}
+    <div class="cta-buttons">
+      <a href="/register" class="btn">Sign Up</a>
+      <a href="/login" class="btn btn-alt">Login</a>
+    </div>
+  {{/if}}
+</div>

@@ -1,0 +1,26 @@
+<div class="auth-form">
+  <h2>Logged Out</h2>
+  <p>You have been successfully logged out.</p>
+  <div class="form-action">
+    <p>Want to log in again? <a href="/login">Login here</a></p>
+  </div>
+</div>
+
+<script>
+  // Clear HTTP Basic Auth credentials
+  // This helps with some browsers that aggressively cache credentials
+  document.addEventListener('DOMContentLoaded', function() {
+    // Adding this iframe with incorrect credentials helps clear the authentication
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = '/login';
+    document.body.appendChild(iframe);
+    
+    // Remove the iframe after it has loaded
+    iframe.onload = function() {
+      setTimeout(function() {
+        document.body.removeChild(iframe);
+      }, 500);
+    };
+  });
+</script>

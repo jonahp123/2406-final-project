@@ -1,0 +1,22 @@
+<h1>User Management</h1>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each userEntries}}
+        <tr>
+          <td>{{userid}}</td>
+          <td>{{password}}</td>
+          <td>{{role}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

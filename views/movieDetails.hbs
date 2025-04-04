@@ -1,0 +1,77 @@
+<div class="movie-details">
+  <div class="movie-poster">
+    <img src="{{movie.Poster}}" alt="{{movie.Title}} poster" onerror="this.src='/images/no-poster.jpg'">
+  </div>
+  
+  <div class="movie-info">
+    <h1>{{movie.Title}} ({{movie.Year}})</h1>
+    <p><strong>Director:</strong> {{movie.Director}}</p>
+    <p><strong>Cast:</strong> {{movie.Actors}}</p>
+    <p><strong>Genre:</strong> {{movie.Genre}}</p>
+    <p><strong>Plot:</strong> {{movie.Plot}}</p>
+    <p><strong>Runtime:</strong> {{movie.Runtime}}</p>
+    
+    {{#if user}}
+      <div>
+        <h3>Rate this movie:</h3>
+        <form id="rating-form">
+          <input type="hidden" id="movie-id" value="{{movie.imdbID}}">
+          <div class="rating-stars">
+            <input type="radio" id="star5" name="rating" value="5" {{#if (eq userRating 5)}}checked{{/if}}>
+            <label for="star5">★</label>
+            <input type="radio" id="star4" name="rating" value="4" {{#if (eq userRating 4)}}checked{{/if}}>
+            <label for="star4">★</label>
+            <input type="radio" id="star3" name="rating" value="3" {{#if (eq userRating 3)}}checked{{/if}}>
+            <label for="star3">★</label>
+            <input type="radio" id="star2" name="rating" value="2" {{#if (eq userRating 2)}}checked{{/if}}>
+            <label for="star2">★</label>
+            <input type="radio" id="star1" name="rating" value="1" {{#if (eq userRating 1)}}checked{{/if}}>
+            <label for="star1">★</label>
+          </div>
+          <button type="submit" class="btn">Submit Rating</button>
+        </form>
+        <div id="rating-message"></div>
+      </div>
+    {{/if}}
+    
+    <p><strong>Average Rating:</strong> <span class="star-display">{{avgRating}}/5 {{#stars avgRating}}{{/stars}}</span></p>
+  </div>
+</div>
+
+<div class="reviews-section">
+  <h2>Reviews</h2>
+  
+  {{#if reviews.length}}
+    {{#each reviews}}
+      <div class="review-item">
+        <div class="review-header">
+          <span class="review-author">{{userid}}</span>
+          <span class="review-date">{{date}}</span>
+        </div>
+        {{#if rating}}
+        <div class="review-rating">
+          <span class="star-display">Rating: {{rating}}/5 {{#stars rating}}{{/stars}}</span>
+        </div>
+        {{/if}}
+        <p class="review-text">{{review}}</p>
+      </div>
+    {{/each}}
+  {{else}}
+    <p>No reviews yet. Be the first to review!</p>
+  {{/if}}
+  
+  {{#if user}}
+    <div class="review-form">
+      <h3>Write a Review</h3>
+      <p><em>Note: You must rate this movie before submitting a review.</em></p>
+      <form id="review-form">
+        <input type="hidden" id="movie-id" value="{{movie.imdbID}}">
+        <textarea id="review-text" placeholder="Share your thoughts about this movie..." required></textarea>
+        <button type="submit" class="btn">Submit Review</button>
+      </form>
+      <div id="review-message"></div>
+    </div>
+  {{else}}
+    <p>Please <a href="/login">login</a> to write a review.</p>
+  {{/if}}
+</div>

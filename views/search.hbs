@@ -1,0 +1,34 @@
+<div class="search-container">
+  <h2>Search Movies</h2>
+  <form id="search-form" class="search-form">
+    <input type="text" id="search-input" placeholder="Search for a movie..." value="{{searchTerm}}" required>
+    <button type="submit">Search</button>
+  </form>
+</div>
+
+{{#if searchTerm}}
+  <h2>Results for "{{searchTerm}}"</h2>
+  
+  {{#if error}}
+    <p>{{error}}</p>
+  {{else}}
+    {{#if results.length}}
+      <div class="movies-grid">
+        {{#each results}}
+          <div class="movie-card">
+            <a href="/movie/{{imdbID}}">
+              <img src="{{Poster}}" alt="{{Title}} poster" onerror="this.src='/images/no-poster.jpg'">
+              <div class="movie-info">
+                <h3>{{Title}}</h3>
+                <p>{{Year}}</p>
+                <p>{{Type}}</p>
+              </div>
+            </a>
+          </div>
+        {{/each}}
+      </div>
+    {{else}}
+      <p>No results found for "{{searchTerm}}"</p>
+    {{/if}}
+  {{/if}}
+{{/if}}

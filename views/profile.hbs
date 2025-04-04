@@ -1,0 +1,43 @@
+<h1>Your Profile</h1>
+<p>Username: {{user.userid}}</p>
+<p>Role: {{user.role}}</p>
+
+<h2>Your Reviews</h2>
+{{#if reviews.length}}
+  <div class="reviews-section">
+    {{#each reviews}}
+      <div class="review-item">
+        <div class="review-header">
+          <a href="/movie/{{movieId}}">
+            <strong>{{title}}</strong>
+          </a>
+          <span class="review-date">{{date}}</span>
+        </div>
+        <p class="review-text">{{review}}</p>
+        <button class="btn btn-danger delete-review" data-review-id="{{id}}" data-review-movie-id="{{movieId}}">Delete</button>
+      </div>
+    {{/each}}
+  </div>
+{{else}}
+  <p>You haven't written any reviews yet.</p>
+{{/if}}
+
+<h2>Your Ratings</h2>
+{{#if ratings.length}}
+  <div class="movies-grid">
+    {{#each ratings}}
+      <div class="movie-card" data-movie-id="{{movieId}}">
+        <a href="/movie/{{movieId}}">
+          <img src="{{poster}}" alt="{{title}} poster" onerror="this.src='/images/no-poster.jpg'">
+          <div class="movie-info">
+            <h3>{{title}}</h3>
+            <p>Your rating: {{rating}}/5</p>
+            <button class="btn btn-danger delete-rating" data-rating-id="{{id}}">Remove Rating</button>
+          </div>
+        </a>
+      </div>
+    {{/each}}
+  </div>
+{{else}}
+  <p>You haven't rated any movies yet.</p>
+{{/if}}

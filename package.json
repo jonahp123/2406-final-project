@@ -1,0 +1,31 @@
+{
+  "name": "movie-recommendation-hub",
+  "version": "1.0.0",
+  "description": "Web application for movie reviews and recommendations",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/movie-recommendation-hub.git"
+  },
+  "keywords": [
+    "movies",
+    "reviews",
+    "nodejs",
+    "express"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
+    "hbs": "^4.2.0",
+    "morgan": "^1.10.0",
+    "node-fetch": "^2.6.1",
+    "serve-favicon": "^2.5.0",
+    "sqlite3": "^5.1.7"
+  }
+}
